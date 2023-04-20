@@ -4,8 +4,6 @@ cambiarTema(temaConfigurado);
 
 let botonThemeLight = document.getElementById("btnThemeLight");
 let botonThemeDark = document.getElementById("btnThemeDark");
-console.log(botonThemeDark);
-console.log(botonThemeLight);
 
 botonThemeDark.addEventListener("click", ()=> cambiarTema("dark"));
 botonThemeLight.addEventListener("click", ()=> cambiarTema("Light"));
