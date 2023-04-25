@@ -14,12 +14,36 @@ import Pelicula from "./clasePelicula.js";
 
 
 // variables globales
-  let formularioPeliculas = document.querySelector("#formPelicula");
-  
+  let formularioPeliculas = document.querySelector("#formPelicula"),
+  modalEditar =  new bootstrap.Modal(document.querySelector("#ModalEditar"));
+  const btnCrearPelicula = document.querySelector("#btnCrearPelicula")
+  let listaPelicula = [];
+  let codigo = document.querySelector("#codigo"),
+  titulo = document.querySelector("#titulo"),
+  descripcion = document.querySelector("#descripcion"),
+  imagen = document.querySelector("#imagen"),
+  pais = document.querySelector("#pais"),
+  director = document.querySelector("#director"),
+  reparto = document.querySelector("#reparto"),
+  anio = document.querySelector("#anio"),
+  duracion = document.querySelector("#duracion"),
+  alert = document.querySelector("#alerta");
+
+
+
   // manejador de eventos
   formularioPeliculas.addEventListener("submit", prepararFormularioPelicula);
+  btnCrearPelicula.addEventListener("click", desplegarModalPelicula)
 
   //funciones
+  function desplegarModalPelicula() {
+    modalEditar.show();
+
+  }
+
+
+
+
   function prepararFormularioPelicula(e) {
     e.preventDefault();
     console.log("si funciona perro");
@@ -28,6 +52,10 @@ import Pelicula from "./clasePelicula.js";
   }
 
   function crearPelicula() {
+    // Validar datos
+
+    // Si los datos son validos
+    // Creo el objeto Pelicula
     const peliculaEjemplo = new Pelicula(
         "0001",
         "El Padrino",
@@ -39,4 +67,11 @@ import Pelicula from "./clasePelicula.js";
         "Estados Unidos",
         ["Marlon Brando", "Al Pacino", "James Caan"]
       );
+
+      //* Agregar el objeto en el array de peliculas
+      listaPelicula.push();
+
+      // Guardar el array en LocalStorage}
+
+      // Mostrar mensaje de error al usuario
   }

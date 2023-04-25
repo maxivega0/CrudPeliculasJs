@@ -85,8 +85,8 @@
         <h1 class="text-center">Administrador de Peliculas</h1>
         <hr />
         <article class="d-flex">
-          <h5>Ppciones:</h5>
-          <button class="btn btn-outline-primary mx-4">
+          <h5>Opciones:</h5>
+          <button class="btn btn-outline-primary mx-4" id="btnCrearPelicula">
             <i class="bi bi-calendar2-x"></i>
           </button>
         </article>
@@ -116,8 +116,6 @@
                   <button
                     type="button"
                     class="btn btn-warning"
-                    data-bs-toggle="modal"
-                    data-bs-target="#ModalEditar"
                   >
                     <i class="bi bi-pencil-square"></i>
                   </button>
@@ -161,6 +159,7 @@
         </aside>
         
       </section>
+      <!-- Ventana Modal -->
       <div class="modal" tabindex="-1" id="ModalEditar">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -178,31 +177,31 @@
                 >Codigo
               </label>
               <input
-                id="nombreApellido"
+                id="codigo"
                 type="text"
                 placeholder="Ej: Emiliano Martinez"
                 required
-                minlength="5"
-                maxlength="150"
+                minlength="1"
+                maxlength="100"
                 class="form-control border border-danger border-1"
               />
               <label for="nombreApellido" class="form-label fw-semibold"
                 >Titulo
               </label>
               <input
-                id="nombreApellido"
+                id="titulo"
                 type="text"
                 placeholder="Ej: Super Mario Bros. Movie"
                 required
-                minlength="5"
-                maxlength="150"
+                minlength="3"
+                maxlength="100"
                 class="form-control border border-danger border-1"
               />
               <label for="consulta" class="form-label fw-semibold"
                 >Descripcion:
               </label>
               <textarea
-                id="consulta"
+                id="descripcion"
                 rows="4"
                 placeholder="Escriba aqui la descripcion de la pelicula."
                 minlength="5"
@@ -214,7 +213,7 @@
                 >Imagen*
               </label>
               <input
-                id="nombreApellido"
+                id="imagen"
                 type="text"
                 placeholder="Inserte el link de la imagen"
                 required
@@ -225,8 +224,8 @@
               <label for="email" class="form-label fw-semibold">Genero: </label>
               <p>
                 <select
-                  name="sexo"
-                  id="sexo"
+                  name="genero"
+                  id="genero"
                   required
                   class="form-select border border-danger border-1"
                 >
@@ -238,7 +237,7 @@
                 </select>
                 <label for="anio" class="form-label fw-semibold">Año: </label>
                 <input
-                  id="nombreApellido"
+                  id="anio"
                   type="number"
                   placeholder="Ej: 2023"
                   required
@@ -250,7 +249,7 @@
                   >Duracion:
                 </label>
                 <input
-                  id="nombreApellido"
+                  id="duracion"
                   type="text"
                   placeholder="Ej: 93 min"
                   required
@@ -260,7 +259,7 @@
                 />
                 <label for="pais" class="form-label fw-semibold">Pais: </label>
                 <input
-                  id="nombreApellido"
+                  id="pais"
                   type="text"
                   placeholder="Ej: Argentina"
                   required
@@ -280,6 +279,9 @@
                   maxlength="256"
                   class="form-control border border-danger border-1"
                 />
+                <div class="alert alert-danger mt-3 d-none" role="alert" id="alerta">
+                
+                   </div>
                 <button class="btn btn-outline-primary mt-3" type="submit">
                   Enviar
                 </button>
