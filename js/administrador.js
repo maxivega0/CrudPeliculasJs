@@ -39,7 +39,6 @@ import { resumenValidaciones, } from "./helpers.js"
   //funciones
   function desplegarModalPelicula() {
     modalEditar.show();
-
   }
 
 
@@ -54,7 +53,8 @@ import { resumenValidaciones, } from "./helpers.js"
 
   function crearPelicula() {
     // Validar datos
-const resumen = resumenValidaciones(titulo.value);
+const resumen = resumenValidaciones(titulo.value, descripcion.value, imagen.value);
+mostrarMensajeError(resumen);
 if (resumen.length === 0) {
       // Si los datos son validos
     // Creo el objeto Pelicula
@@ -72,12 +72,19 @@ if (resumen.length === 0) {
     console.log(peliculaEjemplo);
 }else{
   console.log("Aqui ocurrieron errores que tengo que mostrar");
+  mostrarMensajeError(resumen);
 }
 
       //* Agregar el objeto en el array de peliculas
-      listaPelicula.push();
 
       // Guardar el array en LocalStorage}
 
       // Mostrar mensaje de error al usuario
+  }
+
+  function mostrarMensajeError(resumen) {
+    if (resumen.length > 0) {
+      alert.className = "alert alert-danger mt-3 ";
+      alert.innerHTML = resumen;
+    }
   }
