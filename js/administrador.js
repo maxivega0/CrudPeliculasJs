@@ -50,8 +50,8 @@ import { resumenValidaciones, } from "./helpers.js"
     tablaPelicula.innerHTML += `<tr>
     <th scope="row">${fila}</th>
     <td>${pelicula.titulo}</td>
-    <td><span class="my-class text-truncate">${pelicula.descripcion}</span></td>
-    <td><span class="my-class text-truncate">${pelicula.imagen}</span></td>
+    <td><span class="my-class text-truncate truncateWidth">${pelicula.descripcion}</span></td>
+    <td><span class="my-class text-truncate truncateWidth">${pelicula.imagen}</span></td>
     <td>${pelicula.genero}</td>
     <td>
       <button class="btn btn-warning" onclick="editarPelicula('${pelicula.codigo}')">
@@ -106,8 +106,17 @@ if (resumen.length === 0) {
     // Guardar el array en LocalStorage}
     guardarEnLocalstorage();
     console.log(guardarEnLocalstorage);
-    limpiarFormulario();
+    // Dibujas la fila en la tabla 
+    crearFila(peliculaNueva, listaPelicula.length)
+    
     // mostrar mensaje intuitivo 
+    Swal.fire(
+      '¡Pelicula creada!', // titulo
+      '¡La pelicula fue creada exitosamente!', // descripcion rapida
+      'success' //icono
+    )
+    
+    limpiarFormulario();
 }
 
 
