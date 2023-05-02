@@ -24,10 +24,19 @@ function validarURLImagen(imagen) {
     }
 }
 
+function validarGenero(genero) {
+    if (genero.length > 0 && (genero === "accion" || genero === "aventura" || genero === "comedia" || genero === "ciencia ficcion" || genero === "drama" || genero === "terror")) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
 //TODO Agregar validaciones de: desc, pais, reparto, anio y duracion
 
 //TODO  Exportamos la funcion que necesitados a admin.js
-export function resumenValidaciones(titulo, descripcion, imagen) {
+export function resumenValidaciones(titulo, descripcion, imagen, genero) {
     let resumen = '';
     if (! validarCantidadCaracteres(titulo,2,100)) {
         // Si no se cumplio la validacion
@@ -39,7 +48,11 @@ export function resumenValidaciones(titulo, descripcion, imagen) {
     }
     if (! validarURLImagen(imagen)) {
         // Si no se cumplio la validacion
-        resumen += "La url debe ser valida y contener una expresion (.jpg, .png, .gif).<br>"
+        resumen += "La url debe ser valida y contener una expresion(.jpg, .png, .gif).<br>"
+    }
+    if (! validarGenero(genero)) {
+        // Si no se cumplio la validacion
+        resumen += "Debe seleccionar un genero de la lista. <br>"
     }
     return resumen; 
 }

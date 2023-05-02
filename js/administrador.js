@@ -53,7 +53,7 @@ import { resumenValidaciones, } from "./helpers.js"
 
   function crearPelicula() {
     // Validar datos
-const resumen = resumenValidaciones(titulo.value, descripcion.value, imagen.value);
+const resumen = resumenValidaciones(titulo.value, descripcion.value, imagen.value, genero.value);
 mostrarMensajeError(resumen);
 if (resumen.length === 0) {
       // Si los datos son validos
