@@ -58,7 +58,7 @@ mostrarMensajeError(resumen);
 if (resumen.length === 0) {
       // Si los datos son validos
     // Creo el objeto Pelicula
-    const peliculaEjemplo = new Pelicula(
+    const peliculaNueva = new Pelicula(
       undefined,
       titulo.value,
       descripcion.value,
@@ -69,15 +69,20 @@ if (resumen.length === 0) {
       pais.value,
       reparto.value
     );
-    console.log(peliculaEjemplo);
+    console.log(peliculaNueva);
+    //* Agregar el objeto en el array de peliculas
+    listaPelicula.push(peliculaNueva);
+
+    // Guardar el array en LocalStorage}
+    guardarEnLocalStorage();
+    limpiarFormulario();
+
 }else{
   console.log("Aqui ocurrieron errores que tengo que mostrar");
   mostrarMensajeError(resumen);
 }
 
-      //* Agregar el objeto en el array de peliculas
 
-      // Guardar el array en LocalStorage}
 
       // Mostrar mensaje de error al usuario
   }
@@ -87,4 +92,11 @@ if (resumen.length === 0) {
       alert.className = "alert alert-danger mt-3 ";
       alert.innerHTML = resumen;
     }
+  }
+
+  function guardarEnLocalStorage() {
+    localStorage.setItem("listaPelicula", JSON.stringify(listaPelicula));
+  }
+  function limpiarFormulario() {
+    formularioPeliculas.reset();
   }
