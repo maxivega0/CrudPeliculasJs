@@ -40,15 +40,15 @@ import { resumenValidaciones, } from "./helpers.js"
 
   function cargaInicial(){
     if(listaPelicula.length > 0){
-      listaPelicula.map((pelicula)=> crearFila(pelicula) )
+      listaPelicula.map((pelicula, posicion)=> crearFila(pelicula, posicion + 1) )
     }
   }
   
-  function crearFila(pelicula){
+  function crearFila(pelicula, fila){
     console.log(pelicula)
     let tablaPelicula = document.getElementById('tablaPelicula');
     tablaPelicula.innerHTML += `<tr>
-    <th scope="row">1</th>
+    <th scope="row">${fila}</th>
     <td>${pelicula.titulo}</td>
     <td><span class="my-class text-truncate">${pelicula.descripcion}</span></td>
     <td><span class="my-class text-truncate">${pelicula.imagen}</span></td>
