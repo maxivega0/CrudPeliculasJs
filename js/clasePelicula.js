@@ -9,9 +9,9 @@ export default class Pelicula {
   #duracion;
   #pais;
   #reparto;
-
+// agregaos libreria en codigo para tener codigo unico
   constructor(
-    codigo,
+    codigo = uuidv4(),
     titulo,
     descripcion,
     imagen,
@@ -21,7 +21,7 @@ export default class Pelicula {
     pais,
     reparto
   ) {
-    this.#codigo = 0;
+    this.#codigo = codigo;
     this.#titulo = titulo;
     this.#descripcion = descripcion;
     this.#imagen = imagen;
