@@ -104,17 +104,19 @@ export default class Pelicula {
     this.#reparto = reparto;
   }
 // Para que funcione stringify
-  toJSON(){
-    return{
-      codigo : this.codigo,
-      titulo : this.titulo,
-      descripcion : this.descripcion,
-      imagen : this.imagen,
-      genero : this.genero,
-      anio : this.anio,
-      duracion : this.duracion,
-      pais : this.pais,
-      reparto : this.reparto,
-    }
+toJSON(){
+  return {
+    codigo : this.codigo,
+    titulo : this.titulo,
+    descripcion : this.descripcion,
+    imagen : this.imagen,
+    genero : this.genero,
+    anio : this.anio,
+    duracion : this.duracion,
+    pais : this.pais,
+    reparto : this.reparto
   }
 }
+}
+
+

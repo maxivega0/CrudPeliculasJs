@@ -18,7 +18,6 @@ import { resumenValidaciones, } from "./helpers.js"
   let formularioPeliculas = document.querySelector("#formPelicula"),
   modalEditar =  new bootstrap.Modal(document.querySelector("#ModalEditar"));
   const btnCrearPelicula = document.querySelector("#btnCrearPelicula")
-  let listaPelicula = [];
   let codigo = document.querySelector("#codigo"),
   titulo = document.querySelector("#titulo"),
   descripcion = document.querySelector("#descripcion"),
@@ -29,9 +28,42 @@ import { resumenValidaciones, } from "./helpers.js"
   anio = document.querySelector("#anio"),
   duracion = document.querySelector("#duracion"),
   alert = document.querySelector("#alerta");
+  
+  let listaPelicula =  JSON.parse(localStorage.getItem('listaPelicula')) || [];  // Si tengo peliculas almacenadas en el array las transformo en tipo Pelicula
+  if (listaPelicula.length > 0) {
+    listaPelicula = listaPelicula.map((pelicula)=> new Pelicula(pelicula.codigo, pelicula.titulo, pelicula.descripcion, pelicula.imagen, pelicula.genero, pelicula.anio,pelicula.reparto, pelicula.pais, pelicula.duracion))
+  }
+
+  // {...pelicula} = pelicula.codigo, pelicula.titulo...)
+  cargaInicial();
 
 
-
+  function cargaInicial(){
+    if(listaPelicula.length > 0){
+      listaPelicula.map((pelicula)=> crearFila(pelicula) )
+    }
+  }
+  
+  function crearFila(pelicula){
+    console.log(pelicula)
+    let tablaPelicula = document.getElementById('tablaPelicula');
+    tablaPelicula.innerHTML += `<tr>
+    <th scope="row">1</th>
+    <td>${pelicula.titulo}</td>
+    <td><span class="my-class text-truncate">${pelicula.descripcion}</span></td>
+    <td><span class="my-class text-truncate">${pelicula.imagen}</span></td>
+    <td>${pelicula.genero}</td>
+    <td>
+      <button class="btn btn-warning" onclick="editarPelicula('${pelicula.codigo}')">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+      <button class="btn btn-danger" onclick="borrarPelicula('${pelicula.codigo}')">
+        <i class="bi bi-x-square"></i>
+      </button>
+    </td>
+  </tr>`
+  }
+    
   // manejador de eventos
   formularioPeliculas.addEventListener("submit", prepararFormularioPelicula);
   btnCrearPelicula.addEventListener("click", desplegarModalPelicula)
@@ -40,8 +72,6 @@ import { resumenValidaciones, } from "./helpers.js"
   function desplegarModalPelicula() {
     modalEditar.show();
   }
-
-
 
 
   function prepararFormularioPelicula(e) {
@@ -74,14 +104,11 @@ if (resumen.length === 0) {
     listaPelicula.push(peliculaNueva);
 
     // Guardar el array en LocalStorage}
-    guardarEnLocalStorage();
+    guardarEnLocalstorage();
+    console.log(guardarEnLocalstorage);
     limpiarFormulario();
     // mostrar mensaje intuitivo 
-}else{
-  console.log("Aqui ocurrieron errores que tengo que mostrar");
-  mostrarMensajeError(resumen);
 }
-
 
 
       // Mostrar mensaje de error al usuario
@@ -89,14 +116,17 @@ if (resumen.length === 0) {
 
   function mostrarMensajeError(resumen) {
     if (resumen.length > 0) {
-      alert.className = "alert alert-danger mt-3 ";
+      alert.className = "alert alert-danger mt-3";
       alert.innerHTML = resumen;
+    } else {
+      alert.className = "alert alert-danger mt-3 d-none";
     }
   }
-
-  function guardarEnLocalStorage() {
-    localStorage.setItem("listaPelicula", JSON.stringify(listaPelicula));
+  
+  function guardarEnLocalstorage(){
+    localStorage.setItem('listaPelicula', JSON.stringify(listaPelicula));
   }
-  function limpiarFormulario() {
+  
+  function limpiarFormulario(){
     formularioPeliculas.reset();
   }
