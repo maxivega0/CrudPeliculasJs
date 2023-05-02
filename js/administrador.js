@@ -76,7 +76,7 @@ if (resumen.length === 0) {
     // Guardar el array en LocalStorage}
     guardarEnLocalStorage();
     limpiarFormulario();
-
+    // mostrar mensaje intuitivo 
 }else{
   console.log("Aqui ocurrieron errores que tengo que mostrar");
   mostrarMensajeError(resumen);
