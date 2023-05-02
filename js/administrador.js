@@ -141,26 +141,47 @@ if (resumen.length === 0) {
   }
 
   window.borrarPelicula = (codigo) => {
-    console.log(codigo);
-    // 1- buscar del array en que ubicacion esta el elemento que tiene el codigo
-    let posicionPelicula = listaPelicula.findIndex((pelicula)=> pelicula.codigo === codigo);
-
-
-    // 2- borrar la pelicula del array (splice)
-    listaPelicula.splice(posicionPelicula, 1)
-
-
-    // 3- Actualizar localStorage
-    guardarEnLocalstorage();
-
-    // 4- Borrar fila de la tabla
-    let tablaPelicula = document.getElementById("tablaPelicula")
-    tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula])
-    // console.log(posicionPelicula);
-    // console.log(tablaPelicula.children[posicionPelicula]);
-
 
     // 5- mostrar un cartel al usuario
+    Swal.fire({
+      title: '¿Estás seguro que quieres borrar?',
+      text: "¡No podremos recuperar los datos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar.',
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // codigo cuando borro
 
+
+        console.log(codigo);
+        // 1- buscar del array en que ubicacion esta el elemento que tiene el codigo
+        let posicionPelicula = listaPelicula.findIndex((pelicula)=> pelicula.codigo === codigo);
     
+        // 2- borrar la pelicula del array (splice)
+        listaPelicula.splice(posicionPelicula, 1)
+    
+        // 3- Actualizar localStorage
+        guardarEnLocalstorage();
+    
+        // 4- Borrar fila de la tabla
+        let tablaPelicula = document.getElementById("tablaPelicula")
+        tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula])
+        // console.log(posicionPelicula);
+        // console.log(tablaPelicula.children[posicionPelicula]);
+   
+        // 5- mostrar un cartel al usuario
+        Swal.fire(
+          '¡Pelicula Eliminada!',
+          'La pelicula fue eliminada correctamente.',
+          'success'
+        )
+        //TODO actualizar elementos array en la tabla
+      }
+    })
+
+ 
   }
