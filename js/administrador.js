@@ -190,7 +190,6 @@ if (resumen.length === 0) {
       }
     })
 
- 
   }
 
   window.prepararPelicula = (codigoPelicula) => {
@@ -255,5 +254,3 @@ if (resumen.length === 0) {
 
     limpiarFormulario();
     modalEditar.hide();
-
-  }
