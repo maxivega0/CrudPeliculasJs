@@ -54,7 +54,7 @@ import { resumenValidaciones, } from "./helpers.js"
     <td class="my-class text-truncate truncateWidth">${pelicula.imagen}</td>
     <td>${pelicula.genero}</td>
     <td>
-      <button class="btn btn-warning" onclick="editarPelicula('${pelicula.codigo}')">
+      <button class="btn btn-warning" onclick="prepararPelicula('${pelicula.codigo}')">
         <i class="bi bi-pencil-square"></i>
       </button>
       <button class="btn btn-danger" onclick="borrarPelicula('${pelicula.codigo}')">
@@ -184,4 +184,23 @@ if (resumen.length === 0) {
     })
 
  
+  }
+
+  window.prepararPelicula = (codigoPelicula) => {
+    console.log(codigoPelicula)
+    // Tener los datos de la pelicula y cargarlo en el formulario
+    const peliculaBuscada = listaPelicula.find((pelicula)=> pelicula.codigo === codigoPelicula)
+    console.log(peliculaBuscada);
+    // Mostrar la Ventana Modal
+    codigo.value = peliculaBuscada.codigo;
+    titulo.value = peliculaBuscada.titulo;
+    descripcion.value = peliculaBuscada.descripcion;
+    genero.value = peliculaBuscada.genero;
+    imagen.value = peliculaBuscada.imagen;
+    pais.value = peliculaBuscada.pais;
+    anio.value = peliculaBuscada.anio;
+    reparto.value = peliculaBuscada.reparto;
+    duracion.value = peliculaBuscada.duracion;
+
+    modalEditar.show();
   }
