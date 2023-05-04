@@ -50,8 +50,8 @@ import { resumenValidaciones, } from "./helpers.js"
     tablaPelicula.innerHTML += `<tr>
     <th scope="row">${fila}</th>
     <td>${pelicula.titulo}</td>
-    <td><span class="my-class text-truncate truncateWidth">${pelicula.descripcion}</span></td>
-    <td><span class="my-class text-truncate truncateWidth">${pelicula.imagen}</span></td>
+    <td class="my-class text-truncate truncateWidth">${pelicula.descripcion}</td>
+    <td class="my-class text-truncate truncateWidth">${pelicula.imagen}</td>
     <td>${pelicula.genero}</td>
     <td>
       <button class="btn btn-warning" onclick="editarPelicula('${pelicula.codigo}')">
@@ -138,4 +138,50 @@ if (resumen.length === 0) {
   
   function limpiarFormulario(){
     formularioPeliculas.reset();
+  }
+
+  window.borrarPelicula = (codigo) => {
+
+    // 5- mostrar un cartel al usuario
+    Swal.fire({
+      title: '¿Estás seguro que quieres borrar?',
+      text: "¡No podremos recuperar los datos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar.',
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // codigo cuando borro
+
+
+        console.log(codigo);
+        // 1- buscar del array en que ubicacion esta el elemento que tiene el codigo
+        let posicionPelicula = listaPelicula.findIndex((pelicula)=> pelicula.codigo === codigo);
+    
+        // 2- borrar la pelicula del array (splice)
+        listaPelicula.splice(posicionPelicula, 1)
+    
+        // 3- Actualizar localStorage
+        guardarEnLocalstorage();
+    
+        // 4- Borrar fila de la tabla
+        let tablaPelicula = document.getElementById("tablaPelicula")
+        tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula])
+        // console.log(posicionPelicula);
+        // console.log(tablaPelicula.children[posicionPelicula]);
+   
+        // 5- mostrar un cartel al usuario
+        Swal.fire(
+          '¡Pelicula Eliminada!',
+          'La pelicula fue eliminada correctamente.',
+          'success'
+        )
+        //TODO actualizar elementos array en la tabla
+      }
+    })
+
+ 
   }
