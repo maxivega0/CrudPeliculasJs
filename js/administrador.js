@@ -28,6 +28,7 @@ import { resumenValidaciones, } from "./helpers.js"
   anio = document.querySelector("#anio"),
   duracion = document.querySelector("#duracion"),
   alert = document.querySelector("#alerta");
+  let altaPelicula = true; // altaPelicula = true, quiero crear una peli, en false para editar
   
   let listaPelicula =  JSON.parse(localStorage.getItem('listaPelicula')) || [];  // Si tengo peliculas almacenadas en el array las transformo en tipo Pelicula
   if (listaPelicula.length > 0) {
@@ -77,7 +78,11 @@ import { resumenValidaciones, } from "./helpers.js"
   function prepararFormularioPelicula(e) {
     e.preventDefault();
     console.log("si funciona perro");
-    crearPelicula();
+    if (altaPelicula) {
+      crearPelicula();
+    }else{
+      editarPelicula();
+    }
     
   }
 
@@ -203,4 +208,35 @@ if (resumen.length === 0) {
     duracion.value = peliculaBuscada.duracion;
 
     modalEditar.show();
+    // Cambiamos el valor de la variable booleana "altaPelicula"
+    altaPelicula = false;
+  }
+
+  function editarPelicula() {
+    console.log("Aqui tengo que editar");
+    //* PASO 1: Buscar la posicion de la pelicula en el array
+    let posicionPelicula = listaPelicula.findIndex((pelicula)=> pelicula.codigo === codigo.value)
+    console.log(posicionPelicula);
+    //TODO  validar los datos
+
+    //* PASO 2: Editar los valores de la pelicula dentro del array
+    listaPelicula[posicionPelicula].titulo = titulo.value;
+    listaPelicula[posicionPelicula].imagen = imagen.value;
+    listaPelicula[posicionPelicula].descripcion = descripcion.value;
+    listaPelicula[posicionPelicula].genero = genero.value;
+    listaPelicula[posicionPelicula].pais = pais.value;
+    listaPelicula[posicionPelicula].anio = anio.value;
+    listaPelicula[posicionPelicula].reparto = reparto.value;
+    listaPelicula[posicionPelicula].duracion = duracion.value;
+
+    //* PASO 3: Actualizar localStorage
+    guardarEnLocalstorage();
+
+    //* PASO 4: Actualizar la fila
+
+    //* PASO 5: Mostrar un cartel confirmando la edicion al usuario
+
+    //* PASO 6: Limpiar el formulario y cerrar el Modal
+
+
   }
