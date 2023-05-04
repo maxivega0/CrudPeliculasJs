@@ -25,7 +25,7 @@ function validarURLImagen(imagen) {
 }
 
 function validarGenero(genero) {
-    if (genero.length > 0 && (genero === "accion" || genero === "aventura" || genero === "comedia" || genero === "ciencia ficcion" || genero === "drama" || genero === "terror")) {
+    if (genero.length > 0 && (genero === "Accion" || genero === "Aventura" || genero === "Comedia" || genero === "Ciencia Ficcion" || genero === "Drama" || genero === "Terror" || genero === "Animado")) {
         return true;
     }else{
         return false;

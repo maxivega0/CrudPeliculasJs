@@ -1,5 +1,3 @@
-import Pelicula from "./clasePelicula.js";
-
 let listaPelicula = JSON.parse(localStorage.getItem("listaPelicula")) || []; // Si tengo peliculas almacenadas en el array las transformo en tipo Pelicula
 
 //   console.log(listaPelicula);
