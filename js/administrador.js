@@ -71,6 +71,8 @@ import { resumenValidaciones, } from "./helpers.js"
 
   //funciones
   function desplegarModalPelicula() {
+    limpiarFormulario();
+    altaPelicula = true;
     modalEditar.show();
   }
 
