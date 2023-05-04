@@ -11,10 +11,16 @@ botonThemeDark.addEventListener("click", ()=> cambiarTema("dark"));
 botonThemeLight.addEventListener("click", ()=> cambiarTema("Light"));
 function cambiarTema(color) {
     // Acceder a los atributos del objeto HTML
-    document.querySelector('html').setAttribute("data-bs-theme", color)
-
-    //cambiar atributo data-bs-theme= "light o dark"
-    console.log(color);
+    document.querySelector('html').setAttribute("data-bs-theme", color);
+    let temaMostrado = document.getElementById("switchIcon");
+    let tema = "";
+    if (color === "dark") {
+        tema = "bi bi-moon-stars-fill";
+    }else{
+        tema = "bi bi-brightness-high-fill";
+    }
+    temaMostrado.className = tema;
+    // console.log(color);
     // guardar en LocalStorage
     localStorage.setItem("theme",JSON.stringify(color));
 
