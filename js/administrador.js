@@ -254,3 +254,4 @@ if (resumen.length === 0) {
 
     limpiarFormulario();
     modalEditar.hide();
+  }
