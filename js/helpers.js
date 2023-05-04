@@ -42,9 +42,9 @@ export function resumenValidaciones(titulo, descripcion, imagen, genero) {
         // Si no se cumplio la validacion
         resumen = "El titulo debe contener entre 2 y 100 caracteres.<br>"
     }
-    if (! validarCantidadCaracteres(descripcion,5,300)) {
+    if (! validarCantidadCaracteres(descripcion,5,600)) {
         // Si no se cumplio la validacion
-        resumen += "La descripcion debe contener entre 5 y 300 caracteres.<br>"
+        resumen += "La descripcion debe contener entre 5 y 600 caracteres.<br>"
     }
     if (! validarURLImagen(imagen)) {
         // Si no se cumplio la validacion

@@ -51,7 +51,7 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/admin.html">Administrador</a>
+                <a class="nav-link active" href="/pages/admin.html">Administrador</a>
               </li>
               <li class="nav-item dropdown">
                 <span
@@ -60,7 +60,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i class="bi bi-moon-stars-fill"></i>
+                  <i class="bi bi-moon-stars-fill" id="switchIcon"></i>
                 </span>
                 <ul class="dropdown-menu">
                   <li>
@@ -158,7 +158,7 @@
                 rows="4"
                 placeholder="Escriba aqui la descripcion de la pelicula."
                 minlength="5"
-                maxlength="200"
+                maxlength="600"
                 
                 class="form-control border border-danger border-1 mb-3"
               ></textarea>
@@ -171,7 +171,7 @@
                 placeholder="Inserte el link de la imagen"
                 
                 minlength="5"
-                maxlength="150"
+                maxlength="256"
                 class="form-control border border-danger border-1"
               />
               <label for="email" class="form-label fw-semibold">Genero: </label>
@@ -179,16 +179,16 @@
                 <select
                   name="genero"
                   id="genero"
-                  
                   class="form-select border border-danger border-1"
                 >
                   <option value="">Seleccione el genero</option>
-                  <option value="accion">Accion</option>
-                  <option value="aventura">Aventura</option>
-                  <option value="ciencia ficcion">Ciencia Ficcion</option>
+                  <option value="Accion">Accion</option>
+                  <option value="Aventura">Aventura</option>
+                  <option value="Ciencia Ficcion">Ciencia Ficcion</option>
                   <option value="Comedia">Comedia</option>
-                  <option value="drama">Drama</option>
-                  <option value="terror">Terror</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Terror">Terror</option>
+                  <option value="Animado">Animado</option>
                 </select>
                 <label for="anio" class="form-label fw-semibold">Año: </label>
                 <input
@@ -208,8 +208,8 @@
                   type="text"
                   placeholder="Ej: 93 min"
                   
-                  minlength="4"
-                  maxlength="32"
+                  minlength="1"
+                  maxlength="16"
                   class="form-control border border-danger border-1"
                 />
                 <label for="pais" class="form-label fw-semibold">Pais: </label>
@@ -219,7 +219,7 @@
                   placeholder="Ej: Argentina"
                   
                   minlength="4"
-                  maxlength="25"
+                  maxlength="48"
                   class="form-control border border-danger border-1"
                 />
                 <label for="reparto" class="form-label fw-semibold"
@@ -231,7 +231,7 @@
                   placeholder="Ej: Chris Pratt, Brad Pitt, etc."
                   
                   minlength="4"
-                  maxlength="256"
+                  maxlength="512"
                   class="form-control border border-danger border-1"
                 />
                 <div class="alert alert-danger mt-3 d-none" role="alert" id="alerta">

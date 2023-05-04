@@ -28,6 +28,7 @@ import { resumenValidaciones, } from "./helpers.js"
   anio = document.querySelector("#anio"),
   duracion = document.querySelector("#duracion"),
   alert = document.querySelector("#alerta");
+  let altaPelicula = true; // altaPelicula = true, quiero crear una peli, en false para editar
   
   let listaPelicula =  JSON.parse(localStorage.getItem('listaPelicula')) || [];  // Si tengo peliculas almacenadas en el array las transformo en tipo Pelicula
   if (listaPelicula.length > 0) {
@@ -54,7 +55,7 @@ import { resumenValidaciones, } from "./helpers.js"
     <td class="my-class text-truncate truncateWidth">${pelicula.imagen}</td>
     <td>${pelicula.genero}</td>
     <td>
-      <button class="btn btn-warning" onclick="editarPelicula('${pelicula.codigo}')">
+      <button class="btn btn-warning" onclick="prepararPelicula('${pelicula.codigo}')">
         <i class="bi bi-pencil-square"></i>
       </button>
       <button class="btn btn-danger" onclick="borrarPelicula('${pelicula.codigo}')">
@@ -70,6 +71,8 @@ import { resumenValidaciones, } from "./helpers.js"
 
   //funciones
   function desplegarModalPelicula() {
+    limpiarFormulario();
+    altaPelicula = true;
     modalEditar.show();
   }
 
@@ -77,7 +80,11 @@ import { resumenValidaciones, } from "./helpers.js"
   function prepararFormularioPelicula(e) {
     e.preventDefault();
     console.log("si funciona perro");
-    crearPelicula();
+    if (altaPelicula) {
+      crearPelicula();
+    }else{
+      editarPelicula();
+    }
     
   }
 
@@ -183,5 +190,67 @@ if (resumen.length === 0) {
       }
     })
 
- 
   }
+
+  window.prepararPelicula = (codigoPelicula) => {
+    console.log(codigoPelicula)
+    // Tener los datos de la pelicula y cargarlo en el formulario
+    const peliculaBuscada = listaPelicula.find((pelicula)=> pelicula.codigo === codigoPelicula)
+    console.log(peliculaBuscada);
+    // Mostrar la Ventana Modal
+    codigo.value = peliculaBuscada.codigo;
+    titulo.value = peliculaBuscada.titulo;
+    descripcion.value = peliculaBuscada.descripcion;
+    genero.value = peliculaBuscada.genero;
+    imagen.value = peliculaBuscada.imagen;
+    pais.value = peliculaBuscada.pais;
+    anio.value = peliculaBuscada.anio;
+    reparto.value = peliculaBuscada.reparto;
+    duracion.value = peliculaBuscada.duracion;
+
+    modalEditar.show();
+    // Cambiamos el valor de la variable booleana "altaPelicula"
+    altaPelicula = false;
+  }
+
+  function editarPelicula() {
+    console.log("Aqui tengo que editar");
+    //* PASO 1: Buscar la posicion de la pelicula en el array
+    let posicionPelicula = listaPelicula.findIndex((pelicula)=> pelicula.codigo === codigo.value)
+    console.log(posicionPelicula);
+    //TODO  validar los datos
+
+    //* PASO 2: Editar los valores de la pelicula dentro del array
+    listaPelicula[posicionPelicula].titulo = titulo.value;
+    listaPelicula[posicionPelicula].imagen = imagen.value;
+    listaPelicula[posicionPelicula].descripcion = descripcion.value;
+    listaPelicula[posicionPelicula].genero = genero.value;
+    listaPelicula[posicionPelicula].pais = pais.value;
+    listaPelicula[posicionPelicula].anio = anio.value;
+    listaPelicula[posicionPelicula].reparto = reparto.value;
+    listaPelicula[posicionPelicula].duracion = duracion.value;
+
+    //* PASO 3: Actualizar localStorage
+    guardarEnLocalstorage();
+
+    //* PASO 4: Actualizar la fila
+    let tablaPelicula = document.getElementById('tablaPelicula');
+    // Accedemos al td de la posicion 1, de la tabla a actualizar
+    console.log(tablaPelicula.children[posicionPelicula].children[1]);
+    tablaPelicula.children[posicionPelicula].children[1].innerHTML = titulo.value;
+    tablaPelicula.children[posicionPelicula].children[2].innerHTML = descripcion.value;
+    tablaPelicula.children[posicionPelicula].children[3].innerHTML = imagen.value;
+    tablaPelicula.children[posicionPelicula].children[4].innerHTML = genero.value;
+
+    //* PASO 5: Mostrar un cartel confirmando la edicion al usuario
+
+    Swal.fire(
+      '¡Pelicula modificada!', // titulo
+      '¡La pelicula fue editada exitosamente!', // descripcion rapida
+      'success' //icono
+    )
+
+    //* PASO 6: Limpiar el formulario y cerrar el Modal
+
+    limpiarFormulario();
+    modalEditar.hide();
