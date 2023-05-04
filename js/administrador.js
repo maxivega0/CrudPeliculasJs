@@ -233,10 +233,25 @@ if (resumen.length === 0) {
     guardarEnLocalstorage();
 
     //* PASO 4: Actualizar la fila
+    let tablaPelicula = document.getElementById('tablaPelicula');
+    // Accedemos al td de la posicion 1, de la tabla a actualizar
+    console.log(tablaPelicula.children[posicionPelicula].children[1]);
+    tablaPelicula.children[posicionPelicula].children[1].innerHTML = titulo.value;
+    tablaPelicula.children[posicionPelicula].children[2].innerHTML = descripcion.value;
+    tablaPelicula.children[posicionPelicula].children[3].innerHTML = imagen.value;
+    tablaPelicula.children[posicionPelicula].children[4].innerHTML = genero.value;
 
     //* PASO 5: Mostrar un cartel confirmando la edicion al usuario
 
+    Swal.fire(
+      '¡Pelicula modificada!', // titulo
+      '¡La pelicula fue editada exitosamente!', // descripcion rapida
+      'success' //icono
+    )
+
     //* PASO 6: Limpiar el formulario y cerrar el Modal
 
+    limpiarFormulario();
+    modalEditar.hide();
 
   }
