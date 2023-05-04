@@ -11,8 +11,8 @@ function mostrarPeliculaIndex(pelicula) {
   indexPelicula.innerHTML += `<div class="col">
     <div class="card h-100">
       <img src=" ${pelicula.imagen} " class="card-img-top h-75 img-fluid" alt=" ${pelicula.titulo} ">
-      <div class="card-body">
-        <h5 class="card-title">${pelicula.titulo} </h5>
+      <div class="card-body d-flex flex-column justify-content-between">
+        <h5 class="card-title">${pelicula.titulo}</h5>
         <a href="./pages/detalle.html" class="btn btn-primary">Ver detalle</a>
       </div>
     </div>
