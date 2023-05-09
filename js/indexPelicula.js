@@ -25,4 +25,6 @@ function navegarPaginaDetalle(codigo) {
   console.log(window.location);
   // Nombre de dominio/pages/detalle.html
   console.log(window.location+'/pages/detalle.html');
+  console.log(window.location.origin+"/pages/detalle.html");
+  window.location.href = window.location.origin+'/pages/detalle.html';
 }
